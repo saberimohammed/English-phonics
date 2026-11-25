@@ -797,6 +797,22 @@ const pKey = () => "neon_p_guest";
 function saveProgress() {
   safeStorage.set(pKey(), JSON.stringify({ stars: state.stars, scores: state.scores.slice(-50), last: state.lastDay, streak: state.streak }));
 }
+let state = {
+  name: "طالب",
+  grade: "عام",
+  level: 1,
+  stars: 0,
+  scores: [],
+  slowMode: false,
+  letterIdx: 0,
+  blendIdx: 0,
+  sentenceIdx: 0,
+  tgUser: null,
+  lastMissedWords: [],
+  currentQuizItem: null,
+  xrayWord: "Knowledge",
+  recordedAudioUrl: null
+};
 function loadProgress() {
   const p = safeJsonParse(safeStorage.get(pKey()), {});
   state.stars = Math.max(0, +p.stars || 0);
@@ -1178,22 +1194,6 @@ function pickFreshUniqueItems(count, preferredLevel) {
 }
 
 // ==================== حالة التطبيق ====================
-let state = {
-  name: "طالب",
-  grade: "عام",
-  level: 1,
-  stars: 0,
-  scores: [],
-  slowMode: false,
-  letterIdx: 0,
-  blendIdx: 0,
-  sentenceIdx: 0,
-  tgUser: null,
-  lastMissedWords: [],
-  currentQuizItem: null,
-  xrayWord: "Knowledge",
-  recordedAudioUrl: null
-};
 
 let adminPass = CONFIG.ADMIN_PASS;
 let cloudUrl = CONFIG.CLOUD_URL;
